@@ -250,7 +250,7 @@ if submitted:
                 .properties(height=400)
             )
 
-            st.altair_chart(chart, use_container_width=True)
+            st.altair_chart(chart, width='stretch')
 
     except Exception as e:
         st.error(f"Prediction failed: {e}")
