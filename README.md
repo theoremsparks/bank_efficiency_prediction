@@ -1,150 +1,178 @@
-# Bank Efficiency Class Prediction App
+# ***Bank Efficiency Class Prediction App***
 
-This project combines Data Envelopment Analysis (DEA) and machine learning to predict the managerial efficiency class of a bank. It includes the full research pipeline, model comparison workflow, and a deployed Streamlit app for bank prediction.
+This repository is an end-to-end machine learning application for predicting the managerial efficiency class of a bank using financial and operational variables derived from a directional distance function Network Data Envelopment Analysis (DDF-NDEA) framework. It translates a research pipeline into an interactive decision-support tool deployed with Streamlit.
 
-## Features
+![Python](https://img.shields.io/badge/python-3.12%2B-blue)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Ensemble-green)
+![Optimization](https://img.shields.io/badge/Optimization-DEA-orange)
 
-- Two-stage DEA processing
-- Descriptive and decision-matrix analysis
-- Multiple ML models and optimized variants
-- Model comparison using Copeland-based ranking
-- Streamlit app for interactive prediction
+## ***1. Overview***
+The workflow begins with DEA computation and analysis, after which the processed dataset is used for machine learning classification. The final deployed application allows a user to enter the financial values of one bank at a time and receive a predicted managerial class, class probabilities, and a plain-language interpretation of the result.
 
-## Predicted Classes
+    - Two-stage DEA processing
+    - Descriptive and decision-matrix analysis
+    - Multiple ML models and optimized variants
+    - Model comparison using Copeland-based ranking
+    - Streamlit app for interactive prediction
+    - Prediction of bank managerial efficiency class
+    - Probability scores across all four classes
+    - Visual display of class probabilities
+    - Plain-language interpretation of the predicted class
 
-- Network Leaders
-- Transformation Specialists
-- Network Laggards
-- Funding-Rich Underperformers
+The deployed model predicts one of four managerial classes:
 
-## Project Structure
+    - Network Leaders
+    - Transformation Specialists
+    - Network Laggards
+    - Funding-Rich Underperformers
 
-```text
-bank_efficiency_prediction/
+
+## ***2. Input Variables***
+
+The deployed model uses the following variables.
+
+### Stage 1
+- **Controllable inputs:** Assets, Employee Expense
+- **Quasi-fixed input:** Equity
+- **Intermediate output:** Deposits
+
+### Stage 2
+- **Controllable input:** Borrowings
+- **Undesirable input:** NPAs (Previous Period)
+- **Desirable outputs:**
+  - Performing Loans
+  - Investment
+  - Net Income
+  - Net-interest Income
+  - Non-interest Income
+- **Undesirable output:** NPAs
+
+## ***3. Methodological Context***
+
+This project is based on a two-stage DEA plus machine learning workflow:
+
+    1. Raw bank data is processed through a two-stage DEA model.
+    2. DEA-related outputs are merged into a processed dataset for downstream analysis and classification.
+    3. Multiple machine learning models are trained and compared.
+    4. A voting ensemble classifier is selected as the final deployed model.
+    5. The selected model is served through a Streamlit application for interactive prediction.
+
+## ***4. Final Deployed Model***
+The deployed application uses a **Voting Classifier** selected after comparative evaluation against multiple alternative models. The voting optimized classifier was chosen as the most suitable deployed model based on model comparison results.
+
+## ***5. Project Structure***
+```
+    bank_efficiency_prediction/
+├── 📄 .gitignore
+├── 📄 app.py                          # Streamlit deployment app
+├── 📁 data/
+│   ├── 📁 raw/
+│   │   └── 📄 data.csv                # Raw bank dataset
+│   └── 📁 processed/
+│       └── 📄 dea_data_for_ml.csv     # DEA-processed dataset for ML
 │
-├── .gitignore
-├── app.py
-├── .venv/
+├── 📁 models/
+│   └── 📁 ml/                         # Saved trained model files
+│       ├── 📁 xgboost/
+│       ├── 📁 xgboost_optuna/
+│       ├── 📁 random_forest/
+│       ├── 📁 random_forest_optuna/
+│       ├── 📁 lightgbm/
+│       ├── 📁 lightgbm_optuna/
+│       ├── 📁 catboost/
+│       ├── 📁 catboost_optuna/
+│       ├── 📁 extra_trees/
+│       ├── 📁 extra_trees_optuna/
+│       ├── 📁 adaboost/
+│       ├── 📁 adaboost_optuna/
+│       ├── 📁 bagging/
+│       ├── 📁 bagging_optuna/
+│       ├── 📁 voting/
+│       ├── 📁 voting_optimized/
+│       ├── 📁 stacking/
+│       └── 📁 stacking_optimized/
 │
-├── data/
-│   ├── raw/
-│   │   └── data.csv
-│   └── processed/
-│       └── dea_data_for_ml.csv
+├── 📁 outputs/
+│   ├── 📁 analysis/                   # Analysis results and plots
+│   │   ├── 📁 descriptive/
+│   │   ├── 📁 boxplots/
+│   │   └── 📁 decision_matrix/
+│   ├── 📁 model_comparison/           # Model comparison reports
+│   └── 📁 ml/                         # Model-specific outputs
+│       ├── 📁 xgboost/
+│       ├── 📁 xgboost_optuna/
+│       ├── 📁 random_forest/
+│       ├── 📁 random_forest_optuna/
+│       ├── 📁 lightgbm/
+│       ├── 📁 lightgbm_optuna/
+│       ├── 📁 catboost/
+│       ├── 📁 catboost_optuna/
+│       ├── 📁 extra_trees/
+│       ├── 📁 extra_trees_optuna/
+│       ├── 📁 adaboost/
+│       ├── 📁 adaboost_optuna/
+│       ├── 📁 bagging/
+│       ├── 📁 bagging_optuna/
+│       ├── 📁 voting/
+│       ├── 📁 voting_optimized/
+│       ├── 📁 stacking/
+│       └── 📁 stacking_optimized/
 │
-├── models/
-│   └── ml/
-│       ├── xgboost/
-│       ├── xgboost_optuna/
-│       ├── random_forest/
-│       ├── random_forest_optuna/
-│       ├── lightgbm/
-│       ├── lightgbm_optuna/
-│       ├── catboost/
-│       ├── catboost_optuna/
-│       ├── extra_trees/
-│       ├── extra_trees_optuna/
-│       ├── adaboost/
-│       ├── adaboost_optuna/
-│       ├── bagging/
-│       ├── bagging_optuna/
-│       ├── voting/
-│       ├── voting_optimized/
-│       ├── stacking/
-│       └── stacking_optimized/
-│
-├── outputs/
-│   ├── analysis/
-│   │   ├── descriptive/
-│   │   ├── boxplots/
-│   │   └── decision_matrix/
-│   ├── model_comparison/
-│   └── ml/
-│       ├── xgboost/
-│       ├── xgboost_optuna/
-│       ├── random_forest/
-│       ├── random_forest_optuna/
-│       ├── lightgbm/
-│       ├── lightgbm_optuna/
-│       ├── catboost/
-│       ├── catboost_optuna/
-│       ├── extra_trees/
-│       ├── extra_trees_optuna/
-│       ├── adaboost/
-│       ├── adaboost_optuna/
-│       ├── bagging/
-│       ├── bagging_optuna/
-│       ├── voting/
-│       ├── voting_optimized/
-│       ├── stacking/
-│       └── stacking_optimized/
-│
-├── src/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── compare_models.py
-│   ├── run_dea.py
-│   ├── run_analysis.py
-│   ├── run_pipeline.py
-│   ├── run_full_pipeline.py
+├── 📁 src/
+│   ├── 📄 __init__.py
+│   ├── 📄 config.py                   # Central path and folder configuration
+│   ├── 📄 compare_models.py           # Copeland-based model comparison
+│   ├── 📄 run_dea.py                  # Runs DEA stage
+│   ├── 📄 run_analysis.py             # Runs analysis stage
+│   ├── 📄 run_pipeline.py             # Runs DEA + analysis pipeline
+│   ├── 📄 run_full_pipeline.py        # Runs DEA + analysis + final ML pipeline
 │   │
-│   ├── dea/
-│   │   ├── __init__.py
-│   │   └── compute_dea.py
+│   ├── 📁 dea/
+│   │   ├── 📄 __init__.py
+│   │   └── 📄 compute_dea.py          # DEA model computation
 │   │
-│   ├── analysis/
-│   │   ├── __init__.py
-│   │   ├── descriptive_stats.py
-│   │   ├── correlation_analysis.py
-│   │   ├── efficiency_boxplots.py
-│   │   └── decision_matrix.py
+│   ├── 📁 analysis/
+│   │   ├── 📄 __init__.py
+│   │   ├── 📄 descriptive_stats.py    # Descriptive statistics
+│   │   ├── 📄 correlation_analysis.py # Correlation analysis
+│   │   ├── 📄 efficiency_boxplots.py  # Efficiency boxplots
+│   │   └── 📄 decision_matrix.py      # Decision matrix classification
 │   │
-│   └── ml/
-│       ├── __init__.py
-│       ├── train_xgboost.py
-│       ├── train_xgboost_optuna.py
-│       ├── train_random_forest.py
-│       ├── train_random_forest_optuna.py
-│       ├── train_lightgbm.py
-│       ├── train_lightgbm_optuna.py
-│       ├── train_catboost.py
-│       ├── train_catboost_optuna.py
-│       ├── train_extra_trees.py
-│       ├── train_extra_trees_optuna.py
-│       ├── train_adaboost.py
-│       ├── train_adaboost_optuna.py
-│       ├── train_bagging.py
-│       ├── train_bagging_optuna.py
-│       ├── train_voting_classifier.py
-│       ├── train_voting_optimized_classifier.py
-│       ├── train_stacking_classifier.py
-│       └── train_stacking_optimized_classifier.py
+│   └── 📁 ml/
+│       ├── 📄 __init__.py
+│       ├── 📄 train_xgboost.py
+│       ├── 📄 train_xgboost_optuna.py
+│       ├── 📄 train_random_forest.py
+│       ├── 📄 train_random_forest_optuna.py
+│       ├── 📄 train_lightgbm.py
+│       ├── 📄 train_lightgbm_optuna.py
+│       ├── 📄 train_catboost.py
+│       ├── 📄 train_catboost_optuna.py
+│       ├── 📄 train_extra_trees.py
+│       ├── 📄 train_extra_trees_optuna.py
+│       ├── 📄 train_adaboost.py
+│       ├── 📄 train_adaboost_optuna.py
+│       ├── 📄 train_bagging.py
+│       ├── 📄 train_bagging_optuna.py
+│       ├── 📄 train_voting_classifier.py
+│       ├── 📄 train_voting_optimized_classifier.py
+│       ├── 📄 train_stacking_classifier.py
+│       └── 📄 train_stacking_optimized_classifier.py
 │
-├── requirements.txt
-└── README.md
+├── 📄 requirements.txt
+└── 📄 README.md
+```
 
-Run Locally
+## ***6. Pipeline Commands***
 
-Install dependencies:
-pip install -r requirements.txt
+```bash
+Run DEA only: python -m src.run_dea
+Run DEA and analysis: python -m src.run_pipeline
+Run the end-to-end model: python -m src.run_full_pipeline
+Compare models: python -m src.compare_models
+```
 
-Run the Streamlit app:
-streamlit run app.py
+## ***🚀 7. Deployment***
+ **[bankefficiencyprediction.streamlit.app](https://bankefficiencyprediction.streamlit.app/)** 
 
-Pipeline Commands
-
-Run DEA only:
-python -m src.run_dea
-
-Run DEA and analysis:
-python -m src.run_pipeline
-
-Run the full pipeline:
-python -m src.run_full_pipeline
-
-Compare models:
-python -m src.compare_models
-
-Deployment
-Streamlit App: https://bankefficiencyprediction.streamlit.app/
-GitHub Repo: https://github.com/theoremsparks/bank_efficiency_prediction
+Repository: [github.com/theoremsparks/bank_efficiency_prediction](https://github.com/theoremsparks/bank_efficiency_prediction)
