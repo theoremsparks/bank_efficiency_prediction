@@ -1,0 +1,7 @@
+Parameter,Value
+n_estimators,1833.0
+learning_rate,0.23964882508094176
+max_depth,5.0
+subsample,0.7332638524024792
+colsample_bytree,0.5810518550670855
+min_split_gain,0.07700572246650211

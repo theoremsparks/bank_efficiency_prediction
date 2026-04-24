@@ -1,0 +1,5 @@
+Parameter,Value
+n_estimators,500
+max_depth,27
+min_samples_split,3
+min_samples_leaf,2

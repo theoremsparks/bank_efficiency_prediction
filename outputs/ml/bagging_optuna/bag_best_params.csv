@@ -1,0 +1,7 @@
+Parameter,Value
+base_max_depth,12.0
+base_min_samples_split,4.0
+base_min_samples_leaf,1.0
+n_estimators,341.0
+max_samples,0.6842509831046587
+max_features,0.827762487322045

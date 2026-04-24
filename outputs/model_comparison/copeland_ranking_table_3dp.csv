@@ -1,0 +1,10 @@
+Model,Wins,Losses,Ties,Copeland Score,Rank
+Voting Classifier,63,1,0,62,1
+LightGBM Optuna,55,7,2,48,2
+CatBoost Optuna,46,16,2,30,3
+XGBoost Optuna,40,24,0,16,4
+Extra Trees Optuna,24,35,5,-11,5
+Bagging Optuna,23,36,5,-13,6
+Random Forest Optuna,17,47,0,-30,7
+AdaBoost Optuna,9,50,5,-41,8
+Stacking Classifier,0,61,3,-61,9
