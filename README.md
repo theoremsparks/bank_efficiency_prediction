@@ -38,7 +38,7 @@ The deployed model uses the following variables.
 
 ### Stage 2
 - **Controllable input:** Borrowings
-- **Undesirable input:** NPAs (Previous Period)
+- **Undesirable input:** Lagged NPAs
 - **Desirable outputs:**
   - Performing Loans
   - Investment

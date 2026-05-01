@@ -11,7 +11,7 @@ def run_descriptive_stats():
         "Equity",
         "Deposits",
         "Borrowings",
-        "NPAs (Previous Period)",
+        "Lagged NPAs",
         "Performing Loans",
         "Investment",
         "Net Income",

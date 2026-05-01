@@ -1,4 +1,4 @@
-Assets,Employee Expense,Equity,Deposits,Borrowings,NPAs (Previous Period),Performing Loans,Investment,Net Income,Net-interest Income,Non-interest Income,NPAs,True_Class,Predicted_Class,True_Class_Name,Predicted_Class_Name
+Assets,Employee Expense,Equity,Deposits,Borrowings,Lagged NPAs,Performing Loans,Investment,Net Income,Net-interest Income,Non-interest Income,NPAs,True_Class,Predicted_Class,True_Class_Name,Predicted_Class_Name
 5608.539,68.57,668.459,4744.316,158.41,21.832,3004.264,1903.018,84.137,160.83,59.462,14.758,1,1,Network Leaders,Network Leaders
 7670.686,123.23,617.39,6602.295,382.079,31.292,5268.911,1925.808,85.03,230.281,77.972,32.996,4,3,Funding-Rich Underperformers,Network Laggards
 1636.381,31.737,207.542,1279.582,131.111,2.892,1444.116,32.866,-21.468,75.03,6.149,33.434,2,2,Transformation Specialists,Transformation Specialists

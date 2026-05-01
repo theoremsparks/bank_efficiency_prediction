@@ -19,7 +19,7 @@ def compute_two_stage_ddf_ndea(
       - Stage 1 intermediate output: Deposits
 
       - Stage 2 controllable input: Borrowings
-      - Stage 2 undesirable input: NPAs (Previous Period)
+      - Stage 2 undesirable input: Lagged NPAs
       - Stage 2 desirable outputs:
             Performing Loans,
             Investment,
@@ -58,7 +58,7 @@ def compute_two_stage_ddf_ndea(
     z_cols = ["Deposits"]                               # intermediate output / input
 
     stage2_q_cols = ["Borrowings"]                      # controllable input stage 2
-    stage2_b_cols = ["NPAs (Previous Period)"]          # undesirable input stage 2
+    stage2_b_cols = ["Lagged NPAs"]          # undesirable input stage 2
 
     good_y_cols = [
         "Performing Loans",

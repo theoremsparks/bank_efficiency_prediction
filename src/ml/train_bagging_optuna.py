@@ -126,7 +126,7 @@ def main():
         "Equity",
         "Deposits",
         "Borrowings",
-        "NPAs (Previous Period)",
+        "Lagged NPAs",
         "Performing Loans",
         "Investment",
         "Net Income",
