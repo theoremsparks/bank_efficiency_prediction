@@ -105,7 +105,7 @@ with st.expander("Enter Bank Input Variables", expanded=True):
         st.markdown(
             """
             - **Controllable input:** Borrowings  
-            - **Undesirable input:** NPAs (Previous Period)  
+            - **Undesirable input:** Lagged NPAs  
             - **Desirable outputs:** Performing Loans, Investment, Net Income, Net-interest Income, Non-interest Income  
             - **Undesirable output:** NPAs
             """
@@ -117,7 +117,7 @@ with st.expander("Enter Bank Input Variables", expanded=True):
             performing_loans = st.number_input("Performing Loans", min_value=0.01, value=100.0, step=1.0, format="%.4f")
             net_interest_income = st.number_input("Net-interest Income", min_value=-100000.0, value=100.0, step=1.0, format="%.4f")
         with c2:
-            npas_previous = st.number_input("NPAs (Previous Period)", min_value=0.01, value=100.0, step=1.0, format="%.4f")
+            lagged_npas = st.number_input("Lagged NPAs", min_value=0.01, value=100.0, step=1.0, format="%.4f")
             investment = st.number_input("Investment", min_value=0.01, value=100.0, step=1.0, format="%.4f")
             non_interest_income = st.number_input("Non-interest Income", min_value=-100000.0, value=100.0, step=1.0, format="%.4f")
         with c3:
@@ -136,7 +136,7 @@ if submitted:
         "Equity": equity,
         "Deposits": deposits,
         "Borrowings": borrowings,
-        "NPAs (Previous Period)": npas_previous,
+        "Lagged NPAs": lagged_npas,
         "Performing Loans": performing_loans,
         "Investment": investment,
         "Net Income": net_income,
